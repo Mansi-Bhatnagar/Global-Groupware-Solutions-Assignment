@@ -33,7 +33,7 @@ const DeleteUser = (props) => {
           <p className="text-[15px] tracking-[0.8px] max-sm:text-sm">
             Are you sure you want to delete this user?
           </p>
-          <div className="flex items-center justify-end gap-[10px]">
+          <div className="flex items-center justify-end gap-3">
             <button
               className="rounded-full border-[1.5px] border-transparent bg-[#f48c06] px-5 py-2 text-white transition-all duration-150 ease-in-out hover:scale-110 max-sm:py-1 max-sm:text-sm"
               onClick={deleteUserHandler}

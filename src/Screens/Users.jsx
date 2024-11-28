@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef } from "react";
 import { getUsers } from "../Services/Users";
 import { useState } from "react";
 import DeleteUser from "../Components/DeleteUserModal";
+import EditUser from "../Components/EditUserModal";
 
 const Users = () => {
   const observer = useRef();
@@ -14,6 +15,10 @@ const Users = () => {
   const [userId, setUserId] = useState();
   const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
   const [deletedSuccessfully, setDeletedSuccessfully] = useState(false);
+  const [showEditUserModal, setShowEditUserModal] = useState(false);
+  const [currentUser, setCurrentUser] = useState();
+  const [editedSuccessfully, setEditedSuccessfully] = useState(false);
+  const [newDetails, setNewDetails] = useState({});
 
   //Handlers
   const loadMoreUsers = async () => {
@@ -32,6 +37,12 @@ const Users = () => {
     setShowDeleteUserModal(true);
   };
 
+  const editUserModal = (id, user) => {
+    setUserId(id);
+    setCurrentUser(user);
+    setShowEditUserModal(true);
+  };
+
   //Effects
 
   useEffect(() => {
@@ -46,6 +57,25 @@ const Users = () => {
       setDeletedSuccessfully(false);
     }
   }, [deletedSuccessfully]);
+
+  useEffect(() => {
+    if (editedSuccessfully) {
+      setUserData((prev) => {
+        const temp = prev;
+        for (let i = 0; i < temp.length; i++) {
+          if (temp[i].id === currentUser.id) {
+            temp[i].first_name = newDetails.first_name;
+            temp[i].last_name = newDetails.last_name;
+            temp[i].email = newDetails.email;
+            break;
+          }
+        }
+
+        return temp;
+      });
+      setEditedSuccessfully(false);
+    }
+  }, [editedSuccessfully]);
 
   const lastUserElementRef = useCallback(
     (node) => {
@@ -86,7 +116,10 @@ const Users = () => {
               <span>{user.last_name}</span>
             </div>
             <div className="mt-8 flex items-center !justify-end !gap-3">
-              <button className="w-20 rounded-full bg-[#f48c06] py-2 text-sm text-white transition-all duration-150 ease-in-out hover:scale-110">
+              <button
+                onClick={() => editUserModal(user.id, user)}
+                className="w-20 rounded-full bg-[#f48c06] py-2 text-sm text-white transition-all duration-150 ease-in-out hover:scale-110"
+              >
                 Edit
               </button>
               <button
@@ -110,6 +143,15 @@ const Users = () => {
         </div>
       ) : (
         ""
+      )}
+      {showEditUserModal && (
+        <EditUser
+          open={showEditUserModal}
+          setShowEditUserModal={setShowEditUserModal}
+          user={currentUser}
+          editedSuccessfully={setEditedSuccessfully}
+          newDetails={setNewDetails}
+        />
       )}
       <DeleteUser
         open={showDeleteUserModal}

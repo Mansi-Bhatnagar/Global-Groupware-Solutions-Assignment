@@ -31,3 +31,17 @@ export async function deleteUser(id) {
     throw error;
   }
 }
+
+export async function editUser(id, firstName, lastName, email) {
+  try {
+    const response = await axios.put(
+      `/users/${id}`,
+      { first_name: firstName, last_name: lastName, email: email },
+      config
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}

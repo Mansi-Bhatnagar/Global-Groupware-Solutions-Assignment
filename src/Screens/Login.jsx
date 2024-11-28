@@ -60,7 +60,6 @@ const Login = () => {
       navigate("/users");
       localStorage.setItem("userToken", response?.data?.token);
     }
-    console.log(response);
   };
 
   //Effects
