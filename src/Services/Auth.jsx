@@ -20,7 +20,7 @@ export async function login(email, password) {
     );
     return response;
   } catch (error) {
-    toast.error("Invalid credentials");
+    toast.error("Invalid credentials. 🙏");
     throw error;
   }
 }

@@ -56,7 +56,7 @@ const Login = () => {
     if (!email || !password) return;
     const response = await login(email, password);
     if (response?.status === 200) {
-      toast.success("You have logged in successfully. 🙏");
+      toast.success("You have logged in successfully. 🎉");
       navigate("/users");
       localStorage.setItem("userToken", response?.data?.token);
     }
