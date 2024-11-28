@@ -72,7 +72,7 @@ const Login = () => {
   return (
     <div className="flex h-screen items-center">
       <div
-        className="relative h-screen w-[45%] bg-cover bg-no-repeat"
+        className="relative h-screen w-[45%] bg-cover bg-no-repeat max-md:hidden"
         style={{ backgroundImage: `url(${background})` }}
       >
         <div className="absolute top-0 flex h-full w-full flex-col items-center justify-center bg-[#000000be] text-center">
@@ -94,7 +94,7 @@ const Login = () => {
           </p>
         </div>
       </div>
-      <div className="flex w-[55%] flex-col items-center justify-center">
+      <div className="flex w-[55%] flex-col items-center justify-center max-md:w-full">
         <h1 className="text-center text-4xl font-bold">
           Welcome to <br />
           <span className="text-5xl text-[#f48c06]">User Vault!</span>

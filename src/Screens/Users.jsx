@@ -134,19 +134,19 @@ const Users = () => {
           placeholder="Search using first name"
         />
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-16 py-10">
+      <div className="flex flex-wrap items-center justify-center gap-16 py-10 max-lg:gap-8">
         {dataToDisplay?.map((user, index) => (
           <div
-            className="flex h-[200px] w-[400px] items-center justify-start gap-6 rounded-md p-5 shadow-[0_4px_6px_rgba(0,0,0,0.1)] hover:cursor-pointer"
+            className="flex h-[200px] w-[400px] items-center justify-start gap-6 rounded-md p-5 shadow-[0_4px_6px_rgba(0,0,0,0.1)] hover:cursor-pointer max-lg:w-[80%] max-sm:h-[150px] max-sm:w-[calc(100vw_-_80px)] max-sm:p-3"
             key={index}
             ref={userData.length === index + 1 ? lastUserElementRef : null}
           >
             <img
-              className="h-[128px] w-[128px] rounded-full border-2 border-[#f48c06] object-cover"
+              className="h-[128px] w-[128px] rounded-full border-2 border-[#f48c06] object-cover max-sm:h-[80px] max-sm:w-[80px]"
               src={user.avatar}
               alt={user.first_name}
             />
-            <div className="w-full [&_div]:flex [&_div]:items-center [&_div]:gap-2 [&_h5]:text-lg [&_h5]:font-medium [&_h5]:text-[#f48c06] [&_span]:font-medium [&_span]:text-[#979dac]">
+            <div className="w-full [&_div]:flex [&_div]:items-center [&_div]:gap-2 [&_h5]:text-lg [&_h5]:font-medium [&_h5]:text-[#f48c06] max-sm:[&_h5]:text-base [&_span]:font-medium [&_span]:text-[#979dac] max-sm:[&_span]:text-sm">
               <div>
                 <h5>First name: </h5>
                 <span>{user.first_name}</span>
@@ -155,16 +155,16 @@ const Users = () => {
                 <h5>Last name: </h5>
                 <span>{user.last_name}</span>
               </div>
-              <div className="mt-8 flex items-center !justify-end !gap-3">
+              <div className="mt-8 flex items-center !justify-end !gap-3 max-sm:mt-5 max-sm:!justify-start">
                 <button
                   onClick={() => editUserModal(user.id, user)}
-                  className="w-20 rounded-full bg-[#f48c06] py-2 text-sm text-white transition-all duration-150 ease-in-out hover:scale-110"
+                  className="w-20 rounded-full bg-[#f48c06] py-2 text-sm text-white transition-all duration-150 ease-in-out hover:scale-110 max-sm:w-16"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => deleteUserHandler(user.id)}
-                  className="w-20 rounded-full bg-[#979dac] py-2 text-sm text-white transition-all duration-150 ease-in-out hover:scale-110"
+                  className="w-20 rounded-full bg-[#979dac] py-2 text-sm text-white transition-all duration-150 ease-in-out hover:scale-110 max-sm:w-16"
                 >
                   Delete
                 </button>

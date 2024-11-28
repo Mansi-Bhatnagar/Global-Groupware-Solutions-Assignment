@@ -30,7 +30,7 @@ export default function FloatingLabelInput({
   };
 
   return (
-    <div className="relative mb-5 w-[500px]">
+    <div className="relative mb-5 w-[500px] max-lg:w-[400px] max-md:w-[300px]">
       <input
         id={id}
         type={type}
